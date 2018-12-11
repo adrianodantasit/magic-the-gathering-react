@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../../sass/main.scss";
-import Card from "../Components/Card";
+import Cards from "../Components/Cards";
+import CardsDetails from "../Components/CardsDetails";
 
 class App extends Component {
   constructor() {
@@ -29,18 +31,28 @@ class App extends Component {
   render() {
     const { cards } = this.state;
 
-    console.log(cards);
-
     return (
       <div>
-        {cards.length > 0 && (
-          <React.Fragment>
-            <Card cards={cards} />
-          </React.Fragment>
-        )}
+        <React.Fragment>
+          <Switch>
+            <Route
+              path="/details/:id"
+              render={props => <CardsDetails {...props} />}
+            />
+            <Route
+              path="/"
+              render={props => <Cards cards={cards} {...props} />}
+            />
+          </Switch>
+        </React.Fragment>
       </div>
     );
   }
 }
 
-render(<App />, document.getElementById("root"));
+render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("root")
+);

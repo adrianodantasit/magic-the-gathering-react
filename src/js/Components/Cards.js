@@ -1,13 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Card = ({ cards }) => {
+const Cards = ({ cards }) => {
   if (cards) {
     return (
       <div className="cards-grid__container">
         {cards.map(card => {
           return (
             <div className="card" key={`${card.id}`}>
-              <img src={`${card.imageUrl}`} />
+              <Link to={`/details/${card.id}`}>
+                <img src={`${card.imageUrl}`} />
+              </Link>
             </div>
           );
         })}
@@ -16,4 +19,4 @@ const Card = ({ cards }) => {
   }
 };
 
-export default Card;
+export default Cards;

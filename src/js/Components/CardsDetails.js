@@ -28,15 +28,13 @@ class CardDetails extends Component {
     const { card } = this.state;
 
     return (
-      <div>
-        <ul>
-          <li>{card.name}</li>
-          <li>{card.rarity}</li>
-          <li>{card.types}</li>
-          <li>{card.text}</li>
-          <li>
-            <img src={`${card.imageUrl}`} />
-          </li>
+      <div className="card__details">
+        <img className="card__image" src={`${card.imageUrl}`} />
+        <ul className="card__info">
+          <li>Name: {card.name}</li>
+          <li>Rarity: {card.rarity}</li>
+          <li>Type {card.types}</li>
+          <li>Text: "{card.text}"</li>
         </ul>
       </div>
     );

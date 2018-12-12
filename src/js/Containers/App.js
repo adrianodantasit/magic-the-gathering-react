@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../../sass/main.scss";
 import Cards from "../Components/Cards";
 import CardsDetails from "../Components/CardsDetails";
+import Navbar from "../Components/Navbar";
 
 class App extends Component {
   constructor() {
@@ -32,19 +33,18 @@ class App extends Component {
     const { cards } = this.state;
 
     return (
-      <div>
-        <React.Fragment>
-          <Switch>
-            <Route
-              path="/details/:id"
-              render={props => <CardsDetails {...props} />}
-            />
-            <Route
-              path="/"
-              render={props => <Cards cards={cards} {...props} />}
-            />
-          </Switch>
-        </React.Fragment>
+      <div className="interface">
+        <Navbar />
+        <Switch>
+          <Route
+            path="/details/:id"
+            render={props => <CardsDetails {...props} />}
+          />
+          <Route
+            path="/"
+            render={props => <Cards cards={cards} {...props} />}
+          />
+        </Switch>
       </div>
     );
   }

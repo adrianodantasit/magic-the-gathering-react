@@ -5,6 +5,7 @@ import "../../sass/main.scss";
 import Cards from "../Components/Cards";
 import CardsDetails from "../Components/CardsDetails";
 import Navbar from "../Components/Navbar";
+import {filterByColor} from "../Components/Filter"
 
 class App extends Component {
   constructor() {
@@ -42,7 +43,7 @@ class App extends Component {
           />
           <Route
             path="/"
-            render={props => <Cards cards={cards} {...props} />}
+            render={props => <Cards cards={filterByColor(cards,"White")} {...props} />}
           />
         </Switch>
       </div>

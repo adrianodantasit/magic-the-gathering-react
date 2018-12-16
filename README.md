@@ -1,4 +1,4 @@
-# Quiz Game
+# Magic the Gathering - React
 
 The objective of this project is implement an interface that display cards from the game Magic the Gathering and allow to see details about them. This project fetch data from the Open Trivia Database API https://docs.magicthegathering.io/
 

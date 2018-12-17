@@ -39,7 +39,7 @@ class App extends Component {
         <Switch>
           <Route
             path="/details/:id"
-            render={props => <CardsDetails {...props} />}
+            component={CardsDetails}
           />
           <Route
             path="/"

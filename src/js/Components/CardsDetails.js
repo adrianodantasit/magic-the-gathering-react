@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 
 class CardDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      card: {}
-    };
-  }
+  state = { loading: true };
+
 
   componentDidMount() {
     this.fetchCard(
@@ -17,24 +13,45 @@ class CardDetails extends Component {
   fetchCard = url => {
     fetch(url)
       .then(response => response.json())
-      .then(data =>
+      .then(data => {
         this.setState({
-          card: data.card
+          name: data.card.name,
+          imageUrl: data.card.imageUrl,
+          rarity: data.card.rarity,
+          text: data.card.text,
+          loading: false
         })
-      );
+      });
   };
 
+  /* 
+  subTypesArr = () => {
+    let subTypes;
+    let arr = this.state.card.subtypes;
+    if (Array.isArray(arr)) {
+      subTypes = arr.join(", ");
+    } else {
+      subTypes = arr;
+    }
+    return subTypes;
+  }
+  */
+
   render() {
-    const { card } = this.state;
+    const { imageUrl, name, rarity, text, loading } = this.state;
+
+    if (loading) {
+      return (<h1>Loading...</h1>)
+    }
+
 
     return (
       <div className="card__details">
-        <img className="card__image" src={`${card.imageUrl}`} />
+        <img className="card__image" src={`${imageUrl}`} />
         <ul className="card__info">
-          <li>Name: {card.name}</li>
-          <li>Rarity: {card.rarity}</li>
-          <li>Type {card.types}</li>
-          <li>Text: "{card.text}"</li>
+          <li>Name: {name}</li>
+          <li>Rarity: {rarity}</li>
+          <li>Text: "{text}"</li>
         </ul>
       </div>
     );

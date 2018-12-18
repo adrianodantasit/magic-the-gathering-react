@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../../sass/main.scss";
-import Cards from "../Components/Cards";
-import CardsDetails from "../Components/CardsDetails";
-import Navbar from "../Components/Navbar";
-import {filterByColor} from "../Components/Filter"
+import { Cards, CardsDetails, Navbar, Search } from "../Components/index"
+import { filterByColor } from "../utils/index"
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      cards: []
+      cards: [],
+      color: "",
     };
   }
 
@@ -25,17 +24,22 @@ class App extends Component {
       .then(response => response.json())
       .then(data =>
         this.setState({
-          cards: data.cards
+          cards: data.cards,
         })
       );
   };
 
+  handleColorChange = event => {
+    this.setState({ color: event.target.value });
+  }
+
   render() {
-    const { cards } = this.state;
+    const { color, cards, isLoading } = this.state;
 
     return (
       <div className="interface">
         <Navbar />
+        <Search color={color} handleColorChange={this.handleColorChange} />
         <Switch>
           <Route
             path="/details/:id"
@@ -43,10 +47,10 @@ class App extends Component {
           />
           <Route
             path="/"
-            render={props => <Cards cards={filterByColor(cards,"White")} {...props} />}
+            render={props => <Cards cards={filterByColor(cards, color)} loading={isLoading} {...props} />}
           />
         </Switch>
-      </div>
+      </div >
     );
   }
 }

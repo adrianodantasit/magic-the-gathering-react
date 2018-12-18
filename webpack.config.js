@@ -5,10 +5,12 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/js/Containers/App.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/bundle.js"
+    filename: "js/bundle.js",
+    publicPath: '/'
   },
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./dist",
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({

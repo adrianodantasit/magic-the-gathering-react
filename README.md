@@ -43,9 +43,8 @@ npm run build
 ## TODO
 
 - Improve the interface
-- Card's details when clicked
 - Pagination
-- Filter by rarity/color
+- Add more tests
 
 ## Built With
 
